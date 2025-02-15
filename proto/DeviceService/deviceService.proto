@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package DeviceGRPCervice;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/BeedZiBood/protos";
+
+service DeviceService {
+    rpc GetDeviceList (google.protobuf.Empty) returns (DeviceListResponse) {}
+    rpc SendTest (TestRequest) returns (TestResponse) {}
+}
+
+message DeviceListResponse {
+    repeated int32 devices = 1;
+}
+
+message TestRequest {
+    uint32 device_id = 1;
+    uint32 source_id = 2;
+    uint32 test_number = 3;
+}
+
+message TestResponse {
+    bool status = 1;
+}
